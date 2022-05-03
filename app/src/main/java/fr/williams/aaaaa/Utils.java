@@ -6,7 +6,9 @@ import java.io.File;
 
 public class Utils {
 
-    public static File sdCardDir = Environment.getExternalStorageDirectory();
+    //public static File sdCardDir = Environment.getExternalStorageDirectory();
+
+    public static LocalSettings ls = new LocalSettings();
 
 //
 //        for (File f : sdCardDir.listFiles()) {

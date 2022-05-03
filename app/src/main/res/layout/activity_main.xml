@@ -16,12 +16,20 @@
             app:layout_constraintVertical_bias="0.04"
     android:textSize="26sp"/>
     <Button
-            android:text="Paramètres"
+            android:text="Paramètres du module"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/settings_button"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.036" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.886"/>
+    <Button
+            android:text="Paramètres de l'application"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/settingslocal_button"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.353" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.886"/>
     <Button
             android:text="Exportation des données"
@@ -37,5 +45,6 @@
             android:layout_height="wrap_content" android:id="@+id/curves_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.886"/>
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.886"
+            app:layout_constraintHorizontal_bias="0.655"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

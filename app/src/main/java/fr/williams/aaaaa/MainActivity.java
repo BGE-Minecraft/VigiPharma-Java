@@ -29,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        File storage = new File("/storage/");
+//        List<String> fs = Arrays.asList(storage.list());
+//        System.out.println(storage.exists());
+//        fs.forEach(System.out::println);
+//        fs = fs.stream().filter(s -> !s.equals("emulated") && !s.equals("self")).collect(Collectors.toList());
+//        fs.forEach(System.out::println);
+//        System.out.println(fs.size());
+//        final String sf = fs.get(0);
+        new Utils();
         tv = findViewById(R.id.textView);
         settings = findViewById(R.id.settings_button);
         curves = findViewById(R.id.curves_button);
@@ -76,7 +86,10 @@ public class MainActivity extends AppCompatActivity {
 //            ls.forEach(s -> {
 //                if (s != null && s != "") {
             CompletableFuture.runAsync(() -> {
-                File f = new File("/storage/2D87-DCB1/data.json");
+//                File f = new File("/storage/2D87-DCB1/data.json");
+
+                File f = new File(Utils.sdcard + "/data.json");
+
                 System.out.println(f.getAbsolutePath());
                 System.out.println(f.exists());
                 if (!f.exists()) {

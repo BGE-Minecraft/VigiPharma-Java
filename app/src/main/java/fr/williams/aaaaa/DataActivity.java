@@ -39,7 +39,7 @@ public class DataActivity extends AppCompatActivity {
         List<DataPoint> dprs = new ArrayList<>();
 //        List<DataPoint> dps = new ArrayList<>();
 
-        File f = new File("/storage/4D2B-07DF/data.json");
+        File f = new File(Utils.sdcard + "/data.json");
         System.out.println(f.getAbsolutePath());
         System.out.println(f.exists());
         if (!f.exists()) {

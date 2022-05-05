@@ -12,7 +12,7 @@
             android:layout_width="275dp"
             android:layout_height="48dp" android:id="@+id/minhum"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="252dp"
+            android:layout_marginTop="224dp"
             android:layout_marginStart="52dp"
             android:textSize="26sp"/>
     <TextView
@@ -23,13 +23,13 @@
             android:layout_marginStart="52dp"
             android:textSize="26sp" app:layout_constraintEnd_toStartOf="@+id/txt_hummax"
             app:layout_constraintHorizontal_bias="0.0" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.58"/>
+            app:layout_constraintVertical_bias="0.553"/>
     <TextView
             android:text="Température maximum"
             android:layout_width="275dp"
             android:layout_height="48dp" android:id="@+id/maxtemptxt"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="176dp"
+            android:layout_marginTop="140dp"
             android:layout_marginStart="52dp"
             android:textSize="26sp"/>
     <TextView
@@ -37,7 +37,7 @@
             android:layout_width="275dp"
             android:layout_height="48dp" android:id="@+id/mintemptxt"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="52dp"
             android:layout_marginStart="52dp"
             android:textSize="26sp"/>
     <EditText
@@ -48,8 +48,8 @@
             android:id="@+id/txt_hummin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.433"
-            app:layout_constraintVertical_bias="0.455"/>
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.432"
+            app:layout_constraintVertical_bias="0.405"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -59,7 +59,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.434" app:layout_constraintVertical_bias="0.58"/>
+            app:layout_constraintHorizontal_bias="0.434" app:layout_constraintVertical_bias="0.553"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -67,8 +67,8 @@
             android:ems="10"
             android:id="@+id/txt_tempmin"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="100dp" app:layout_constraintBottom_toTopOf="@+id/txt_tempmax"
-            app:layout_constraintVertical_bias="0.0" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/txt_tempmax"
+            app:layout_constraintVertical_bias="0.565" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.434"/>
     <EditText
             android:layout_width="wrap_content"
@@ -79,15 +79,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.434"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.318"/>
+            app:layout_constraintVertical_bias="0.253"/>
     <Button
             android:text="Sauvegarder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/save_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.773"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.849"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.311"/>
+            app:layout_constraintHorizontal_bias="0.31"/>
     <Button
             android:text="Retour"
             android:layout_width="wrap_content"

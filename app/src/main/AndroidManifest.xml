@@ -15,10 +15,14 @@
             android:usesCleartextTraffic="true">
         <activity
                 android:name=".LocalSettingsActivity"
-                android:exported="true"/>
+                android:exported="true"
+                android:screenOrientation="landscape"
+                android:theme="@style/Theme.AppCompat"/>
         <activity
                 android:name=".DataActivity"
-                android:exported="true"/>
+                android:exported="true"
+                android:screenOrientation="landscape"
+                android:theme="@style/Theme.AppCompat"/>
         <activity
                 android:name=".SettingsActivity"
                 android:exported="true"

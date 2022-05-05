@@ -7,4 +7,56 @@
         android:layout_height="match_parent"
         tools:context=".DataActivity">
 
+
+    <com.jjoe64.graphview.GraphView
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:id="@+id/graph2" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.035" app:layout_constraintHorizontal_bias="0.464"/>
+    <com.jjoe64.graphview.GraphView
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:id="@+id/graph4" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.884" app:layout_constraintHorizontal_bias="0.04"/>
+    <com.jjoe64.graphview.GraphView
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:id="@+id/graph5" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.884" app:layout_constraintHorizontal_bias="0.464"/>
+    <com.jjoe64.graphview.GraphView
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:id="@+id/graph3" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.035" app:layout_constraintHorizontal_bias="0.892"/>
+    <com.jjoe64.graphview.GraphView
+            android:layout_width="350dp"
+            android:layout_height="300dp"
+            android:id="@+id/graph" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.035" app:layout_constraintHorizontal_bias="0.039"/>
+    <Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.799" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.752"/>
+    <Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.961" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.752"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

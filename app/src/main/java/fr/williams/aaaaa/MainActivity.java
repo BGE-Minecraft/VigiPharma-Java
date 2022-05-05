@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tv;
-    private Button settings, datas;
+    private Button settings, datas, curves;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.textView);
         settings = findViewById(R.id.settings_button);
+        curves = findViewById(R.id.curves_button);
         settings.setOnClickListener(l -> {
             //startActivity(new Intent(getApplicationContext(),SettingsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             //setContentView(R.layout.activity_settings);
@@ -38,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
             Intent ti = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(ti);
         });
+
+        curves.setOnClickListener(l -> {
+            Intent ti = new Intent(MainActivity.this, DataActivity.class);
+            startActivity(ti);
+        });
+
         datas = findViewById(R.id.data_button);
         datas.setOnClickListener(l -> {
 //            String sdpath = null, sd1path = null, usbdiskpath = null, sd0path = null;
@@ -72,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 File f = new File("/storage/2D87-DCB1/data.json");
                 System.out.println(f.getAbsolutePath());
                 System.out.println(f.exists());
-
+                if (!f.exists()) {
+                    Toast.makeText(this, "Merci d'insérer la carte sd", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 try {
                     InputStream is = new FileInputStream(f);
@@ -130,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                                     switch (urltype) {
                                         case "createalert.php":
                                             if (alert == null || alert == "" || alert == "null") continue;
-                                            url = Utils.ls.getServerurl() + urltype;
+                                            url = Utils.ls.getServerUrl() + urltype;
                                             lru = new URL(url);
                                             con = (HttpURLConnection) lru.openConnection();
 //            byte[] out = "{\"name\":\"test2\",\"min_temp\":\"10\",\"min_hum\":\"45\",\"max_temp\":\"30\",\"max_hum\":\"75\"}" .getBytes(StandardCharsets.UTF_8);
@@ -175,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                                             break;
 
                                         case "createmesure.php":
-                                            url = Utils.ls.getServerurl() + urltype;
+                                            url = Utils.ls.getServerUrl() + urltype;
                                             lru = new URL(url);
                                             con = (HttpURLConnection) lru.openConnection();
                                             datas = "{\"id_Modules\":\"1\"" +
@@ -256,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             //if(Utils.sdCardDir == null) tv.setText("Aucune carte sd");
             //else
-            tv.setText("Connectez vous au module VigiPharma\nou brancher la carte sd du module dans la tablette");
+            tv.setText("Connectez vous au module VigiPharma\nou branchez la carte sd du module dans la tablette");
         } catch (Exception e) {
             e.printStackTrace();
         }

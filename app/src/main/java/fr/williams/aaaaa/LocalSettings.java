@@ -2,17 +2,27 @@ package fr.williams.aaaaa;
 
 public class LocalSettings {
 
-    private String serverurl;
+    private String serverUrl;
+    private int idModule;
 
-    public LocalSettings(){
-        serverurl = "http://172.17.1.185/RestAPI/api/";
+    public LocalSettings() {
+        serverUrl = "http://172.17.1.185/RestAPI/api/";
+        idModule = 1;
     }
 
-    public String getServerurl() {
-        return serverurl;
+    public String getServerUrl() {
+        return serverUrl;
     }
 
-    public void setServerurl(String serverurl) {
-        this.serverurl = serverurl;
+    public void setServerUrl(String serverurl) {
+        this.serverUrl = serverurl;
+    }
+
+    public int getIdModule() {
+        return idModule;
+    }
+
+    public void setIdModule(int idModule) {
+        this.idModule = idModule;
     }
 }

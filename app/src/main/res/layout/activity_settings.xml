@@ -8,38 +8,82 @@
         tools:context=".SettingsActivity">
 
     <TextView
+            android:text="Inclinaison X maximum"
+            android:layout_width="275dp"
+            android:layout_height="48dp" android:id="@+id/maxincliXtxt"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="120dp"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="120dp"/>
+    <TextView
+            android:text="Inclinaison Z maximum"
+            android:layout_width="275dp"
+            android:layout_height="48dp" android:id="@+id/maxincliZtxt"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="132dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.524"/>
+    <TextView
+            android:text="Inclinaison Z minimum"
+            android:layout_width="275dp"
+            android:layout_height="48dp" android:id="@+id/minincliZtxt"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="204dp"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="132dp"/>
+    <TextView
             android:text="Humidité minimum"
             android:layout_width="275dp"
             android:layout_height="48dp" android:id="@+id/minhum"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="224dp"
-            android:layout_marginStart="52dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginStart="40dp"
             android:textSize="26sp"/>
     <TextView
             android:text="Humidité maximum"
             android:layout_width="275dp"
             android:layout_height="48dp" android:id="@+id/maxhum"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="52dp"
-            android:textSize="26sp" app:layout_constraintEnd_toStartOf="@+id/txt_hummax"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.553"/>
+            android:layout_marginStart="40dp"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0" android:layout_marginTop="290dp"/>
+    <TextView
+            android:text="Choc maximum"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp" android:id="@+id/maxchoc"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.436" app:layout_constraintTop_toBottomOf="@+id/txt_hummax"
+            app:layout_constraintVertical_bias="0.221"/>
     <TextView
             android:text="Température maximum"
             android:layout_width="275dp"
             android:layout_height="48dp" android:id="@+id/maxtemptxt"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="140dp"
-            android:layout_marginStart="52dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginStart="40dp"
             android:textSize="26sp"/>
     <TextView
             android:text="Température minimum"
             android:layout_width="275dp"
             android:layout_height="48dp" android:id="@+id/mintemptxt"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="52dp"
-            android:layout_marginStart="52dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="40dp"
             android:textSize="26sp"/>
+    <TextView
+            android:text="Inclinaison X minimum"
+            android:layout_width="275dp"
+            android:layout_height="48dp" android:id="@+id/minincliXtxt"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="120dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -47,9 +91,10 @@
             android:ems="10"
             android:id="@+id/txt_hummin"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.432"
-            app:layout_constraintVertical_bias="0.405"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.361" app:layout_constraintStart_toEndOf="@+id/minhum"
+            app:layout_constraintHorizontal_bias="0.0"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -58,8 +103,9 @@
             android:id="@+id/txt_hummax"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.434" app:layout_constraintVertical_bias="0.553"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.52" android:layout_marginEnd="360dp"
+            app:layout_constraintStart_toEndOf="@+id/maxhum" app:layout_constraintHorizontal_bias="0.0"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -68,26 +114,82 @@
             android:id="@+id/txt_tempmin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/txt_tempmax"
-            app:layout_constraintVertical_bias="0.565" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.434"/>
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="412dp"
+            app:layout_constraintStart_toEndOf="@+id/mintemptxt" app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="40dp"/>
+    <EditText
+            android:layout_width="75dp"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/txt_minpitch"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/txt_tempmax"
+            app:layout_constraintVertical_bias="0.352" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.991"
+            android:layout_marginEnd="40dp"/>
+    <EditText
+            android:layout_width="75dp"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/txt_minroll"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.332"
+            android:layout_marginEnd="40dp" app:layout_constraintStart_toEndOf="@+id/minincliZtxt"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <EditText
+            android:layout_width="75dp"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/txt_maxroll"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.106"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
+            android:layout_marginTop="290dp" app:layout_constraintStart_toEndOf="@+id/maxincliZtxt"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <EditText
+            android:layout_width="75dp"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/txt_maxchoc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/maxchoc" app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="48dp" app:layout_constraintTop_toBottomOf="@+id/txt_hummax"
+    />
+    <EditText
+            android:layout_width="75dp"
+            android:layout_height="48dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/txt_maxpitch"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.99"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
+            android:layout_marginTop="120dp" android:layout_marginEnd="40dp"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/txt_tempmax"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.434"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.253"/>
+            app:layout_constraintVertical_bias="0.216" app:layout_constraintStart_toEndOf="@+id/maxtemptxt"
+            app:layout_constraintHorizontal_bias="0.0"/>
     <Button
             android:text="Sauvegarder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/save_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.849"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.936"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.31"/>
+            app:layout_constraintHorizontal_bias="0.019"/>
     <Button
             android:text="Retour"
             android:layout_width="wrap_content"

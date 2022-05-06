@@ -18,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 public class SettingsActivity extends AppCompatActivity {
 
     private Button back_button, save_button;
-    private EditText txt_tempmin, txt_tempmax, txt_hummin, txt_hummax;
+    private EditText txt_tempmin, txt_tempmax, txt_hummin, txt_hummax, txt_minpitch, txt_maxpitch, txt_minroll, txt_maxroll, txt_maxchoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,12 @@ public class SettingsActivity extends AppCompatActivity {
         txt_tempmax = findViewById(R.id.txt_tempmax);
         txt_hummin = findViewById(R.id.txt_hummin);
         txt_hummax = findViewById(R.id.txt_hummax);
+
+        txt_minpitch = findViewById(R.id.txt_minpitch);
+        txt_maxpitch = findViewById(R.id.txt_maxpitch);
+        txt_minroll = findViewById(R.id.txt_minroll);
+        txt_maxroll = findViewById(R.id.txt_maxroll);
+        txt_maxchoc = findViewById(R.id.txt_maxchoc);
 
         save_button = findViewById(R.id.save_button);
         save_button.setOnClickListener(l -> {
@@ -48,6 +54,26 @@ public class SettingsActivity extends AppCompatActivity {
             if (txt_hummax.getText().toString() != null) {
                 input = txt_hummax.getText().toString();
                 sendSettings("maxhum=" + input);
+            }
+            if (txt_minpitch.getText().toString() != null) {
+                input = txt_minpitch.getText().toString();
+                sendSettings("minpitch=" + input);
+            }
+            if (txt_maxpitch.getText().toString() != null) {
+                input = txt_maxpitch.getText().toString();
+                sendSettings("maxpitch=" + input);
+            }
+            if (txt_minroll.getText().toString() != null) {
+                input = txt_minroll.getText().toString();
+                sendSettings("minroll=" + input);
+            }
+            if (txt_maxroll.getText().toString() != null) {
+                input = txt_maxroll.getText().toString();
+                sendSettings("maxroll=" + input);
+            }
+            if (txt_maxchoc.getText().toString() != null) {
+                input = txt_maxchoc.getText().toString();
+                sendSettings("maxchoc=" + input);
             }
         });
 

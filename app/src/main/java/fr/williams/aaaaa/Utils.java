@@ -22,6 +22,7 @@ public class Utils {
         fs = fs.stream().filter(s -> !s.equals("emulated") && !s.equals("self")).collect(Collectors.toList());
         fs.forEach(System.out::println);
         System.out.println(fs.size());
+        if(fs.isEmpty()) return;
         sdcard = "/storage/" + fs.get(0);
     }
 

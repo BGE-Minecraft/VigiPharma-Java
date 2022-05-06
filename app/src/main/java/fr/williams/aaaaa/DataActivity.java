@@ -37,7 +37,7 @@ public class DataActivity extends AppCompatActivity {
         List<DataPoint> dphs = new ArrayList<>();
         List<DataPoint> dpps = new ArrayList<>();
         List<DataPoint> dprs = new ArrayList<>();
-//        List<DataPoint> dps = new ArrayList<>();
+        List<DataPoint> dpcs = new ArrayList<>();
 
         File f = new File(Utils.sdcard + "/data.json");
         System.out.println(f.getAbsolutePath());
@@ -66,7 +66,7 @@ public class DataActivity extends AppCompatActivity {
                 for (int j = 0; j < ay.length(); j++) {
                     System.out.println(ay.get(j));
                     JSONObject jo = ay.getJSONObject(j);
-                    double temp = 0, hum = 0, pitch = 0, roll = 0;
+                    double temp = 0, hum = 0, pitch = 0, roll = 0, choc = 0;
                     String alert = null;
                     if (jo.has("temp")) {
                         temp = jo.getDouble("temp");
@@ -84,6 +84,10 @@ public class DataActivity extends AppCompatActivity {
                             roll = jo.getDouble("roll");
                             System.out.println(jo.get("roll"));
                         }
+                    if (jo.has("choc")) {
+                        choc = jo.getDouble("choc");
+                        System.out.println(jo.get("choc"));
+                    }
                     //if (!jo.has("alert")) continue;
                     if (jo.has("alert")) {
                         alert = jo.getString("alert");
@@ -94,6 +98,7 @@ public class DataActivity extends AppCompatActivity {
                     dphs.add(new DataPoint(offset, hum));
                     dpps.add(new DataPoint(offset, pitch));
                     dprs.add(new DataPoint(offset, roll));
+                    dpcs.add(new DataPoint(offset, choc));
                     offset = offset + 5;
                 }
             }
@@ -104,11 +109,13 @@ public class DataActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> s = new LineGraphSeries<>(dphs.stream().toArray(DataPoint[]::new));
         LineGraphSeries<DataPoint> s2 = new LineGraphSeries<>(dpps.stream().toArray(DataPoint[]::new));
         LineGraphSeries<DataPoint> s3 = new LineGraphSeries<>(dprs.stream().toArray(DataPoint[]::new));
+        LineGraphSeries<DataPoint> s4 = new LineGraphSeries<>(dpcs.stream().toArray(DataPoint[]::new));
 //        series.
         graph.addSeries(series);
         graph2.addSeries(s);
         graph3.addSeries(s2);
         graph4.addSeries(s3);
+        graph5.addSeries(s4);
 
         graph.getViewport().setScalable(true);
         graph.getViewport().setScrollable(true);
@@ -129,6 +136,11 @@ public class DataActivity extends AppCompatActivity {
         graph4.getViewport().setScrollable(true);
         graph4.getViewport().setScalableY(true);
         graph4.getViewport().setScrollableY(true);
+
+        graph5.getViewport().setScalable(true);
+        graph5.getViewport().setScrollable(true);
+        graph5.getViewport().setScalableY(true);
+        graph5.getViewport().setScrollableY(true);
 
 //        File sdCardDir = new File("F://test/");
 //

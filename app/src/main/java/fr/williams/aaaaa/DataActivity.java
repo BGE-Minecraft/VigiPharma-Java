@@ -49,6 +49,7 @@ public class DataActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> s3;
     private LineGraphSeries<DataPoint> s4;
     private Button export, back;
+    private List<TempData> tds = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -344,7 +345,7 @@ public class DataActivity extends AppCompatActivity {
                 }
             }).thenRun(() -> System.out.println("No exception occurred"));
         }*/
-
+        Toast.makeText(this, "Merci de vous Connectez au réseau wifi du serveur", Toast.LENGTH_SHORT).show();
 
 //        File sdCardDir = new File("F://test/");
 //

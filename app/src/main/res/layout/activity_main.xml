@@ -23,21 +23,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.036" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.886"/>
+    <!--    <Button-->
+<!--            android:text="Exportation des données"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" android:id="@+id/data_button"-->
+<!--            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.961" app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.886"/>-->
     <Button
             android:text="Paramètres de l'application"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/settingslocal_button"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.353" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.886"/>
-    <Button
-            android:text="Exportation des données"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/data_button"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.961" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.513" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.886"/>
     <Button
             android:text="Accédez aux courbes"
@@ -46,5 +46,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.886"
-            app:layout_constraintHorizontal_bias="0.655"/>
+            app:layout_constraintHorizontal_bias="0.958"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

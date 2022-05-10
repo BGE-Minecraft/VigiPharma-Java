@@ -44,19 +44,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.035" app:layout_constraintHorizontal_bias="0.039"/>
     <Button
-            android:text="Button"
+            android:text="Exportation des données"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button"
+            android:layout_height="wrap_content" android:id="@+id/export"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.799" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.752"/>
+            app:layout_constraintHorizontal_bias="0.932" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.754"/>
     <Button
-            android:text="Button"
+            android:text="Retour"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button2"
+            android:layout_height="wrap_content" android:id="@+id/back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.961" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.752"/>
+            app:layout_constraintHorizontal_bias="0.864" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.916"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

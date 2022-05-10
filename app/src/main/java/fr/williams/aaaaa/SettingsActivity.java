@@ -1,7 +1,6 @@
 package fr.williams.aaaaa;
 
 import android.content.Intent;
-import android.view.Gravity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
@@ -25,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        txt_tempmin = findViewById(R.id.txt_tempmin);
+        txt_tempmin = findViewById(R.id.txt_serverurl);
         txt_tempmax = findViewById(R.id.txt_tempmax);
         txt_hummin = findViewById(R.id.txt_hummin);
         txt_hummax = findViewById(R.id.txt_hummax);
@@ -36,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         txt_maxroll = findViewById(R.id.txt_maxroll);
         txt_maxchoc = findViewById(R.id.txt_maxchoc);
 
-        save_button = findViewById(R.id.save_button);
+        save_button = findViewById(R.id.save_button_l);
         save_button.setOnClickListener(l -> {
             String input;
             if (txt_tempmin.getText().toString() != null) {
@@ -77,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        back_button = findViewById(R.id.back_button);
+        back_button = findViewById(R.id.back_button_l);
         back_button.setOnClickListener(l -> {
             Intent ti = new Intent(SettingsActivity.this, MainActivity.class);
             startActivity(ti);
@@ -121,7 +119,7 @@ public class SettingsActivity extends AppCompatActivity {
             } catch (Exception e) {
 //            toast.setDuration();
 //            toast.makeText(CONTEXT_RESTRICTED, "MA BITR", Toast.LENGTH_LONG);
-                Toast.makeText(this, "MA BITR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Merci de vous connectez au réseau wifi Vigipharma", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }).thenRun(() -> {

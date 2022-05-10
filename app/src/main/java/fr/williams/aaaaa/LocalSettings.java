@@ -3,11 +3,11 @@ package fr.williams.aaaaa;
 public class LocalSettings {
 
     private String serverUrl;
-    private int idModule;
+//    private int idModule;
 
     public LocalSettings() {
         serverUrl = "http://172.17.1.185/RestAPI/api/";
-        idModule = 1;
+//        idModule = 1;
     }
 
     public String getServerUrl() {
@@ -18,11 +18,11 @@ public class LocalSettings {
         this.serverUrl = serverurl;
     }
 
-    public int getIdModule() {
-        return idModule;
-    }
-
-    public void setIdModule(int idModule) {
-        this.idModule = idModule;
-    }
+//    public int getIdModule() {
+//        return idModule;
+//    }
+//
+//    public void setIdModule(int idModule) {
+//        this.idModule = idModule;
+//    }
 }

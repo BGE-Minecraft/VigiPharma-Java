@@ -23,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        txt_tempmin = findViewById(R.id.txt_serverurl);
+        txt_tempmin = findViewById(R.id.txt_tempmin);
         txt_tempmax = findViewById(R.id.txt_tempmax);
         txt_hummin = findViewById(R.id.txt_hummin);
         txt_hummax = findViewById(R.id.txt_hummax);
@@ -34,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         txt_maxroll = findViewById(R.id.txt_maxroll);
         txt_maxchoc = findViewById(R.id.txt_maxchoc);
 
-        save_button = findViewById(R.id.save_button_l);
+        save_button = findViewById(R.id.save_button);
         save_button.setOnClickListener(l -> {
             String input;
             if (txt_tempmin.getText().toString() != null) {
@@ -75,7 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        back_button = findViewById(R.id.back_button_l);
+        back_button = findViewById(R.id.back_button);
         back_button.setOnClickListener(l -> {
             Intent ti = new Intent(SettingsActivity.this, MainActivity.class);
             startActivity(ti);

@@ -50,6 +50,7 @@ public class DataActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> s4;
     private Button export, back;
     private List<TempData> tds = new ArrayList<>();
+    private int point = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,8 @@ public class DataActivity extends AppCompatActivity {
         graph5 = (GraphView) findViewById(R.id.graph5);
 
 //        File f = new File(Utils.sdcard + "/data.json");
-        if ((Utils.sdcard == null || !new File(Utils.sdcard).exists()) /*&& !Utils.isWifi(getApplicationContext())*/)
-            Toast.makeText(this, "Merci d'insérez la carte sd", Toast.LENGTH_SHORT).show();
+        if ((Utils.sdcard == null || !new File(Utils.sdcard).exists()) && !Utils.isWifi(getApplicationContext()))
+            Toast.makeText(this, "Merci d'insérez la carte sd ou de vous connectez au réseau de votre module VigiPharma", Toast.LENGTH_SHORT).show();
         else {
             if (Utils.sdcard != null && new File(Utils.sdcard).exists()) Utils.sdpresent = true;
             else Utils.wifipresent = true;
@@ -107,15 +108,17 @@ public class DataActivity extends AppCompatActivity {
 //            System.out.println(ls.size());
 //            ls.forEach(s -> {
 //                if (s != null && s != "") {
-            if ((Utils.sdcard == null || !new File(Utils.sdcard).exists())/* && !Utils.isWifi(getApplicationContext())*/)
-                Toast.makeText(this, "Merci d'insérez la carte sd", Toast.LENGTH_SHORT).show();
-            else {
-                if (Utils.sdcard != null && new File(Utils.sdcard).exists()) Utils.sdpresent = true;
-                  else Utils.wifipresent = true;
-            }
+
+//            if ((Utils.sdcard == null || !new File(Utils.sdcard).exists()) && !Utils.isWifi(getApplicationContext()))
+//                Toast.makeText(this, "Merci d'insérez la carte sd", Toast.LENGTH_SHORT).show();
+//            else {
+//                if (Utils.sdcard != null && new File(Utils.sdcard).exists()) Utils.sdpresent = true;
+//                else Utils.wifipresent = true;
+//            }
+
 //            if (Utils.sdpresent) {
-                CompletableFuture.runAsync(() -> {
-                    sendDatas();
+            CompletableFuture.runAsync(() -> {
+                sendDatas();
 //                File f = new File("/storage/2D87-DCB1/data.json"
 //                    System.out.println(new File(Utils.sdcard + "/Datas").getAbsolutePath());
 //                    for (File f : new File(Utils.sdcard + "/Datas").listFiles()) {
@@ -168,7 +171,7 @@ public class DataActivity extends AppCompatActivity {
 ////           }
 //
 //                    }
-                }).thenRun(() -> System.out.println("No exception occurred"));
+            }).thenRun(() -> System.out.println("No exception occurred"));
              /*else {
                 CompletableFuture.runAsync(() -> {
                     try {
@@ -275,6 +278,7 @@ public class DataActivity extends AppCompatActivity {
                     }
                 }
                 setGraphs();
+                runOnUiThread(() ->   Toast.makeText(this, "Merci de vous Connectez au réseau wifi du serveur", Toast.LENGTH_SHORT).show());
             }).thenRun(() -> System.out.println("No exception occurred"));
             return;
         } else {
@@ -332,21 +336,22 @@ public class DataActivity extends AppCompatActivity {
                         in.close();
                         System.out.println(response.toString());
                         try {
-                            if(response.equals("") || response.equals("null")) continue;
+                            if (response.equals("") || response.equals("null")) continue;
                             resp = new JSONObject(response.toString());
-                            if(resp == null) continue;
+                            if (resp == null) continue;
                             setDatas(resp);
-                        } catch (Exception e){
+                        } catch (Exception e) {
                             continue;
                         }
 
                     }
                     setGraphs();
+                    runOnUiThread(() ->   Toast.makeText(this, "Merci de vous Connectez au réseau wifi du serveur", Toast.LENGTH_SHORT).show());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }).thenRun(() ->
-                Toast.makeText(this, "Merci de vous Connectez au réseau wifi du serveur", Toast.LENGTH_SHORT).show());
+                    Toast.makeText(this, "Merci de vous Connectez au réseau wifi du serveur", Toast.LENGTH_SHORT).show());
         }
 
 //        File sdCardDir = new File("F://test/");
@@ -520,102 +525,103 @@ public class DataActivity extends AppCompatActivity {
 
     private void sendDatas() {
         try {
-            for(TempData td : tds) {
+            for (TempData td : tds) {
+                loadingToastloadingToast("Envoie des données en cours");
                 double temp = td.getTemp(), hum = td.getHum(), pitch = td.getPitch(), choc = td.getChoc();
                 for (String urltype : Arrays.asList("createalert.php", "createmesure.php")) {
-                        String alert = td.getAlert();
-                        String url;
-                        String datas;
-                        URL lru;
-                        HttpURLConnection con;
-                        byte[] out;
-                        int length;
-                        String inputLine;
-                        BufferedReader in;
+                    String alert = td.getAlert();
+                    String url;
+                    String datas;
+                    URL lru;
+                    HttpURLConnection con;
+                    byte[] out;
+                    int length;
+                    String inputLine;
+                    BufferedReader in;
 
-                        switch (urltype) {
-                            case "createalert.php":
-                                if (alert == null || alert == "" || alert == "null") continue;
-                                url = Utils.ls.getServerUrl() + urltype;
-                                lru = new URL(url);
-                                con = (HttpURLConnection) lru.openConnection();
-                                datas = "{\"id_Modules\":\"1\"" +
-                                        ",\"temp\":\"{temp}\"" +
-                                        ",\"hum\":\"{hum}\"" +
-                                        ",\"inclinaison\":\"{inclinaison}\"" +
-                                        ",\"choc\":\"{choc}\"" +
-                                        ",\"type\":\"{type}\"}";
-                                datas = datas.replace("{temp}", temp + "");
-                                datas = datas.replace("{hum}", hum + "");
-                                datas = datas.replace("{inclinaison}", pitch + "");
-                                datas = datas.replace("{choc}", choc + "");
-                                datas = datas.replace("{type}", alert);
-                                //if (alert == null || alert == "") continue;
-                                System.out.println(datas);
+                    switch (urltype) {
+                        case "createalert.php":
+                            if (alert == null || alert == "" || alert == "null") continue;
+                            url = Utils.ls.getServerUrl() + urltype;
+                            lru = new URL(url);
+                            con = (HttpURLConnection) lru.openConnection();
+                            datas = "{\"id_Modules\":\"1\"" +
+                                    ",\"temp\":\"{temp}\"" +
+                                    ",\"hum\":\"{hum}\"" +
+                                    ",\"inclinaison\":\"{inclinaison}\"" +
+                                    ",\"choc\":\"{choc}\"" +
+                                    ",\"type\":\"{type}\"}";
+                            datas = datas.replace("{temp}", temp + "");
+                            datas = datas.replace("{hum}", hum + "");
+                            datas = datas.replace("{inclinaison}", pitch + "");
+                            datas = datas.replace("{choc}", choc + "");
+                            datas = datas.replace("{type}", alert);
+                            //if (alert == null || alert == "") continue;
+                            System.out.println(datas);
 
-                                out = datas.getBytes(StandardCharsets.UTF_8);
+                            out = datas.getBytes(StandardCharsets.UTF_8);
 
 //            byte[] out = "{\"id_Modules\":\"4\"}" .getBytes(StandardCharsets.UTF_8);
 
-                                length = out.length;
+                            length = out.length;
 
-                                con.setFixedLengthStreamingMode(length);
-                                con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                                con.setConnectTimeout(5000);
-                                con.setReadTimeout(5000);
-                                con.setDoOutput(true);
-                                con.connect();
-                                try (OutputStream os = con.getOutputStream()) {
-                                    os.write(out);
-                                }
+                            con.setFixedLengthStreamingMode(length);
+                            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                            con.setConnectTimeout(5000);
+                            con.setReadTimeout(5000);
+                            con.setDoOutput(true);
+                            con.connect();
+                            try (OutputStream os = con.getOutputStream()) {
+                                os.write(out);
+                            }
 
-                                in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                                while ((inputLine = in.readLine()) != null) {
-                                    System.out.println(inputLine);
-                                }
-                                in.close();
-                                con.disconnect();
+                            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                            while ((inputLine = in.readLine()) != null) {
+                                System.out.println(inputLine);
+                            }
+                            in.close();
+                            con.disconnect();
 
-                                break;
+                            break;
 
-                            case "createmesure.php":
-                                url = Utils.ls.getServerUrl() + urltype;
-                                lru = new URL(url);
-                                con = (HttpURLConnection) lru.openConnection();
-                                datas = "{\"id_Modules\":\"1\"" +
-                                        ",\"temp\":\"{temp}\"" +
-                                        ",\"hum\":\"{hum}\"}";
-                                datas = datas.replace("{temp}", temp + "");
-                                datas = datas.replace("{hum}", hum + "");
-                                System.out.println(datas);
+                        case "createmesure.php":
+                            url = Utils.ls.getServerUrl() + urltype;
+                            lru = new URL(url);
+                            con = (HttpURLConnection) lru.openConnection();
+                            datas = "{\"id_Modules\":\"1\"" +
+                                    ",\"temp\":\"{temp}\"" +
+                                    ",\"hum\":\"{hum}\"}";
+                            datas = datas.replace("{temp}", temp + "");
+                            datas = datas.replace("{hum}", hum + "");
+                            System.out.println(datas);
 
-                                out = datas.getBytes(StandardCharsets.UTF_8);
-                                length = out.length;
+                            out = datas.getBytes(StandardCharsets.UTF_8);
+                            length = out.length;
 
-                                con.setFixedLengthStreamingMode(length);
-                                con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                                con.setConnectTimeout(5000);
-                                con.setReadTimeout(5000);
-                                con.setDoOutput(true);
-                                con.connect();
-                                try (OutputStream os = con.getOutputStream()) {
-                                    os.write(out);
-                                }
+                            con.setFixedLengthStreamingMode(length);
+                            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                            con.setConnectTimeout(5000);
+                            con.setReadTimeout(5000);
+                            con.setDoOutput(true);
+                            con.connect();
+                            try (OutputStream os = con.getOutputStream()) {
+                                os.write(out);
+                            }
 
-                                in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                            in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-                                while ((inputLine = in.readLine()) != null) {
-                                    System.out.println(inputLine);
-                                }
-                                in.close();
-                                con.disconnect();
+                            while ((inputLine = in.readLine()) != null) {
+                                System.out.println(inputLine);
+                            }
+                            in.close();
+                            con.disconnect();
 
-                                break;
-                        }
+                            break;
                     }
+                }
             }
-
-        } catch (Exception e){
+            runOnUiThread(() ->   Toast.makeText(this, "Toutes données sont désormais exportées", Toast.LENGTH_SHORT).show());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -630,6 +636,8 @@ public class DataActivity extends AppCompatActivity {
                 JSONArray ay = obj.getJSONArray(ar);
                 if (ay.length() == 0) continue;
                 for (int j = 0; j < ay.length(); j++) {
+                    //runOnUiThread(() ->   Toast.makeText(this, "Chargement des courbes...", Toast.LENGTH_SHORT).show());
+                    loadingToastloadingToast("Chargement des courbes");
                     System.out.println(ay.get(j));
                     JSONObject jo = ay.getJSONObject(j);
                     double temp = 0, hum = 0, pitch = 0, roll = 0, choc = 0;
@@ -674,7 +682,7 @@ public class DataActivity extends AppCompatActivity {
         }
     }
 
-    private void setGraphs(){
+    private void setGraphs() {
         series = new LineGraphSeries<>(dpts.stream().toArray(DataPoint[]::new));
         s = new LineGraphSeries<>(dphs.stream().toArray(DataPoint[]::new));
         s2 = new LineGraphSeries<>(dpps.stream().toArray(DataPoint[]::new));
@@ -724,5 +732,14 @@ public class DataActivity extends AppCompatActivity {
         graph5.getViewport().setScrollable(true);
         graph5.getViewport().setScalableY(true);
         graph5.getViewport().setScrollableY(true);
+    }
+
+    private void loadingToastloadingToast(String txt) {
+        String points = "";
+        for (int i = 0; i < point; i++) points += ".";
+        String finalPoints = points;
+        runOnUiThread(() -> Toast.makeText(this, txt + finalPoints, Toast.LENGTH_SHORT).show());
+        if(point < 3) point++;
+        else point = 1;
     }
 }

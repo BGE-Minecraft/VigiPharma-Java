@@ -6,9 +6,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
@@ -36,43 +36,99 @@ public class SettingsActivity extends AppCompatActivity {
 
         save_button = findViewById(R.id.save_button);
         save_button.setOnClickListener(l -> {
-            String input;
-            if (txt_tempmin.getText().toString() != null) {
-                input = txt_tempmin.getText().toString();
-                sendSettings("mintemp=" + input);
-            }
-            if (txt_tempmax.getText().toString() != null) {
-                input = txt_tempmax.getText().toString();
-                sendSettings("maxtemp=" + input);
-            }
-            if (txt_hummin.getText().toString() != null) {
-                input = txt_hummin.getText().toString();
-                sendSettings("minhum=" + input);
-            }
-            if (txt_hummax.getText().toString() != null) {
-                input = txt_hummax.getText().toString();
-                sendSettings("maxhum=" + input);
-            }
-            if (txt_minpitch.getText().toString() != null) {
-                input = txt_minpitch.getText().toString();
-                sendSettings("minpitch=" + input);
-            }
-            if (txt_maxpitch.getText().toString() != null) {
-                input = txt_maxpitch.getText().toString();
-                sendSettings("maxpitch=" + input);
-            }
-            if (txt_minroll.getText().toString() != null) {
-                input = txt_minroll.getText().toString();
-                sendSettings("minroll=" + input);
-            }
-            if (txt_maxroll.getText().toString() != null) {
-                input = txt_maxroll.getText().toString();
-                sendSettings("maxroll=" + input);
-            }
-            if (txt_maxchoc.getText().toString() != null) {
-                input = txt_maxchoc.getText().toString();
-                sendSettings("maxchoc=" + input);
-            }
+//            if ((Utils.sdcard == null || !new File(Utils.sdcard).exists()) && !Utils.isWifi(getApplicationContext()))
+//                Toast.makeText(this, "Merci d'insérez la carte sd ou de vous connectez au réseau de votre module VigiPharma", Toast.LENGTH_SHORT).show();
+//            else {
+//                if (Utils.sdcard != null && new File(Utils.sdcard).exists()) Utils.sdpresent = true;
+//                else Utils.wifipresent = true;
+//            }
+//
+//            if (Utils.wifipresent) {
+                String input;
+                if (txt_tempmin.getText().toString() != null) {
+                    input = txt_tempmin.getText().toString();
+                    sendSettings("mintemp=" + input);
+                }
+                if (txt_tempmax.getText().toString() != null) {
+                    input = txt_tempmax.getText().toString();
+                    sendSettings("maxtemp=" + input);
+                }
+                if (txt_hummin.getText().toString() != null) {
+                    input = txt_hummin.getText().toString();
+                    sendSettings("minhum=" + input);
+                }
+                if (txt_hummax.getText().toString() != null) {
+                    input = txt_hummax.getText().toString();
+                    sendSettings("maxhum=" + input);
+                }
+                if (txt_minpitch.getText().toString() != null) {
+                    input = txt_minpitch.getText().toString();
+                    sendSettings("minpitch=" + input);
+                }
+                if (txt_maxpitch.getText().toString() != null) {
+                    input = txt_maxpitch.getText().toString();
+                    sendSettings("maxpitch=" + input);
+                }
+                if (txt_minroll.getText().toString() != null) {
+                    input = txt_minroll.getText().toString();
+                    sendSettings("minroll=" + input);
+                }
+                if (txt_maxroll.getText().toString() != null) {
+                    input = txt_maxroll.getText().toString();
+                    sendSettings("maxroll=" + input);
+                }
+                if (txt_maxchoc.getText().toString() != null) {
+                    input = txt_maxchoc.getText().toString();
+                    sendSettings("maxchoc=" + input);
+                }
+//            } else {
+//                try {
+//                    InputStream is = new FileInputStream(Utils.sdcard + "/config.json");
+//                    int size = is.available();
+//                    byte[] buffer = new byte[size];
+//                    is.read(buffer);
+//                    is.close();
+//                    String json = new String(buffer, "UTF-8");
+//                    JSONObject obj = new JSONObject(json);
+//                    System.out.println(obj.toString());
+//                    if (txt_tempmin.getText().toString() != null)
+//                        obj.put("mintemp", txt_tempmin.getText().toString());
+//
+//                    if (txt_tempmax.getText().toString() != null)
+//                        obj.put("maxtemp", txt_tempmax.getText().toString());
+//
+//                    if (txt_hummin.getText().toString() != null)
+//                        obj.put("minhum", txt_hummin.getText().toString());
+//
+//                    if (txt_hummax.getText().toString() != null)
+//                        obj.put("maxhum", txt_hummax.getText().toString());
+//
+//                    if (txt_minpitch.getText().toString() != null)
+//                        obj.put("minpitch", txt_minpitch.getText().toString());
+//
+//                    if (txt_maxpitch.getText().toString() != null)
+//                        obj.put("maxpitch", txt_maxpitch.getText().toString());
+//
+//                    if (txt_minroll.getText().toString() != null)
+//                        obj.put("minroll", txt_minroll.getText().toString());
+//
+//                    if (txt_maxroll.getText().toString() != null)
+//                        obj.put("maxroll", txt_maxroll.getText().toString());
+//
+//                    if (txt_maxchoc.getText().toString() != null)
+//                        obj.put("maxchoc", txt_maxchoc.getText().toString());
+//
+//                    String jsonString = obj.toString();
+//                    System.out.println(jsonString);
+//                    //String jsonString = json.toString();
+//
+//                    FileOutputStream fos = new FileOutputStream(Utils.sdcard + "/config.json");
+//                    fos.write(jsonString.getBytes());
+//                    fos.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
         });
 
         back_button = findViewById(R.id.back_button);
@@ -83,12 +139,13 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void sendSettings(String txt) {
+
         CompletableFuture.runAsync(() -> {
             try {
                 URL url = new URL("http://192.168.4.1/helloWorld?" + txt);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("GET");
-               // con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                // con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                 con.setRequestProperty("User-Agent", "Mozilla/5.0");
 //                con.setConnectTimeout(5000);
 //                con.setReadTimeout(5000);
@@ -111,7 +168,7 @@ public class SettingsActivity extends AppCompatActivity {
 //                        response.append(inputLine);
 //                    } in .close();
 
-                    // print result
+                // print result
 //                    System.out.println(response.toString());
 //                }
                 con.disconnect();

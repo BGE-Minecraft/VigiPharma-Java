@@ -18,7 +18,7 @@ public class Utils {
 
     public static LocalSettings ls = new LocalSettings();
     public static String sdcard;
-    public static boolean /*wifipresent = false,*/ sdpresent = false;
+    public static boolean wifipresent = false, sdpresent = false;
 
     public Utils(){
         File storage = new File("/storage/");
@@ -32,22 +32,22 @@ public class Utils {
         sdcard = "/storage/" + fs.get(0);
     }
 
-//    public static boolean isWifi(Context context){
-//        WifiManager manager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-//        if (manager.isWifiEnabled()) {
-//            WifiInfo wifiInfo = manager.getConnectionInfo();
-//            if (wifiInfo == null)  return false;
-////                Toast.makeText(context, "Merci d'insérer la carte sd ou de vous connté au Module Vigipharma via le wifi", Toast.LENGTH_SHORT).show();
-//             else {
-//                NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
-//                if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR){
-//                    Utils.wifipresent = true;
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
+    public static boolean isWifi(Context context){
+        WifiManager manager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        if (manager.isWifiEnabled()) {
+            WifiInfo wifiInfo = manager.getConnectionInfo();
+            if (wifiInfo == null)  return false;
+//                Toast.makeText(context, "Merci d'insérer la carte sd ou de vous connté au Module Vigipharma via le wifi", Toast.LENGTH_SHORT).show();
+             else {
+                NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
+                if (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR){
+                    Utils.wifipresent = true;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
 

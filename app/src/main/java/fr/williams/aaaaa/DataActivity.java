@@ -314,6 +314,7 @@ public class DataActivity extends AppCompatActivity {
                         response.append(inputLine);
                     }
                     in.close();
+                    con.disconnect();
                     //print in String
                     System.out.println(response.toString());
                     //Read JSON response and print
@@ -325,7 +326,7 @@ public class DataActivity extends AppCompatActivity {
                         con = (HttpURLConnection) url.openConnection();
                         con.setRequestMethod("GET");
                         con.setRequestProperty("User-Agent", "Mozilla/5.0");
-                        responseCode = con.getResponseCode();
+                        //responseCode = con.getResponseCode();
 //                System.out.println("\nSending 'GET' request to URL : " + url);
 //                System.out.println("Response Code : " + responseCode);
                         in = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -334,6 +335,7 @@ public class DataActivity extends AppCompatActivity {
                             response.append(inputLine);
                         }
                         in.close();
+                        con.disconnect();
                         System.out.println(response.toString());
                         try {
                             if (response.equals("") || response.equals("null")) continue;

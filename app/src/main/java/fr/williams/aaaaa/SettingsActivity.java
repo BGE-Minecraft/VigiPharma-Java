@@ -1,11 +1,13 @@
 package fr.williams.aaaaa;
 
+import android.Manifest;
 import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.core.app.ActivityCompat;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -35,6 +37,44 @@ public class SettingsActivity extends AppCompatActivity {
         txt_maxchoc = findViewById(R.id.txt_maxchoc);
 
         save_button = findViewById(R.id.save_button);
+        if (!Utils.isWifi(getApplicationContext()))
+            Toast.makeText(this, "Merci de vous connectez au réseau de votre module VigiPharma", Toast.LENGTH_SHORT).show();
+        else {
+            CompletableFuture.runAsync(() -> {
+                try {
+                    URL url = new URL("http://192.168.4.1/getSettings");
+
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    con.setRequestMethod("GET");
+                    con.setRequestProperty("User-Agent", "Mozilla/5.0");
+                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String inputLine;
+                    StringBuffer response = new StringBuffer();
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    in.close();
+                    con.disconnect();
+                    System.out.println(response.toString());
+                    JSONObject resp = new JSONObject(response.toString());
+                    txt_tempmin.setText(resp.getString("mintemp"));
+                    txt_tempmax.setText(resp.getString("maxtemp"));
+                    txt_hummin.setText(resp.getString("minhum"));
+                    txt_hummax.setText(resp.getString("maxhum"));
+
+                    txt_minpitch.setText(resp.getString("minpitch"));
+                    txt_maxpitch.setText(resp.getString("maxpitch"));
+                    txt_minroll.setText(resp.getString("minroll"));
+                    txt_maxroll.setText(resp.getString("maxroll"));
+                    txt_maxchoc.setText(resp.getString("maxchoc"));
+                } catch (Exception e) {
+                        Toast.makeText(this, "Merci de vous connectez au réseau de votre module VigiPharma", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }).thenRun(() -> System.out.println("No exception occurred"));
+
+        }
+
         save_button.setOnClickListener(l -> {
 //            if ((Utils.sdcard == null || !new File(Utils.sdcard).exists()) && !Utils.isWifi(getApplicationContext()))
 //                Toast.makeText(this, "Merci d'insérez la carte sd ou de vous connectez au réseau de votre module VigiPharma", Toast.LENGTH_SHORT).show();
@@ -44,43 +84,43 @@ public class SettingsActivity extends AppCompatActivity {
 //            }
 //
 //            if (Utils.wifipresent) {
-                String input;
-                if (txt_tempmin.getText().toString() != null) {
-                    input = txt_tempmin.getText().toString();
-                    sendSettings("mintemp=" + input);
-                }
-                if (txt_tempmax.getText().toString() != null) {
-                    input = txt_tempmax.getText().toString();
-                    sendSettings("maxtemp=" + input);
-                }
-                if (txt_hummin.getText().toString() != null) {
-                    input = txt_hummin.getText().toString();
-                    sendSettings("minhum=" + input);
-                }
-                if (txt_hummax.getText().toString() != null) {
-                    input = txt_hummax.getText().toString();
-                    sendSettings("maxhum=" + input);
-                }
-                if (txt_minpitch.getText().toString() != null) {
-                    input = txt_minpitch.getText().toString();
-                    sendSettings("minpitch=" + input);
-                }
-                if (txt_maxpitch.getText().toString() != null) {
-                    input = txt_maxpitch.getText().toString();
-                    sendSettings("maxpitch=" + input);
-                }
-                if (txt_minroll.getText().toString() != null) {
-                    input = txt_minroll.getText().toString();
-                    sendSettings("minroll=" + input);
-                }
-                if (txt_maxroll.getText().toString() != null) {
-                    input = txt_maxroll.getText().toString();
-                    sendSettings("maxroll=" + input);
-                }
-                if (txt_maxchoc.getText().toString() != null) {
-                    input = txt_maxchoc.getText().toString();
-                    sendSettings("maxchoc=" + input);
-                }
+            String input;
+            if (txt_tempmin.getText()/*.toString()*/ != null) {
+                input = txt_tempmin.getText().toString();
+                sendSettings("mintemp=" + input);
+            }
+            if (txt_tempmax.getText()/*.toString()*/ != null) {
+                input = txt_tempmax.getText().toString();
+                sendSettings("maxtemp=" + input);
+            }
+            if (txt_hummin.getText()/*.toString()*/ != null) {
+                input = txt_hummin.getText().toString();
+                sendSettings("minhum=" + input);
+            }
+            if (txt_hummax.getText()/*.toString()*/ != null) {
+                input = txt_hummax.getText().toString();
+                sendSettings("maxhum=" + input);
+            }
+            if (txt_minpitch.getText()/*.toString()*/ != null) {
+                input = txt_minpitch.getText().toString();
+                sendSettings("minpitch=" + input);
+            }
+            if (txt_maxpitch.getText()/*.toString()*/ != null) {
+                input = txt_maxpitch.getText().toString();
+                sendSettings("maxpitch=" + input);
+            }
+            if (txt_minroll.getText()/*.toString()*/ != null) {
+                input = txt_minroll.getText().toString();
+                sendSettings("minroll=" + input);
+            }
+            if (txt_maxroll.getText()/*.toString()*/ != null) {
+                input = txt_maxroll.getText().toString();
+                sendSettings("maxroll=" + input);
+            }
+            if (txt_maxchoc.getText()/*.toString()*/ != null) {
+                input = txt_maxchoc.getText().toString();
+                sendSettings("maxchoc=" + input);
+            }
 //            } else {
 //                try {
 //                    InputStream is = new FileInputStream(Utils.sdcard + "/config.json");
@@ -121,6 +161,10 @@ public class SettingsActivity extends AppCompatActivity {
 //                    String jsonString = obj.toString();
 //                    System.out.println(jsonString);
 //                    //String jsonString = json.toString();
+//
+//                    ActivityCompat.requestPermissions(SettingsActivity.this,
+//                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                            1);
 //
 //                    FileOutputStream fos = new FileOutputStream(Utils.sdcard + "/config.json");
 //                    fos.write(jsonString.getBytes());
@@ -179,9 +223,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Toast.makeText(this, "Merci de vous connectez au réseau wifi Vigipharma", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-        }).thenRun(() -> {
-            System.out.println("No exception occurred");
-        });
+        }).thenRun(() -> System.out.println("No exception occurred"));
 
     }
 }

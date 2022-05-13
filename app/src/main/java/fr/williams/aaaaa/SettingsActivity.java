@@ -121,6 +121,8 @@ public class SettingsActivity extends AppCompatActivity {
                 input = txt_maxchoc.getText().toString();
                 sendSettings("maxchoc=" + input);
             }
+            Toast.makeText(this, "Envoi des données effectuées", Toast.LENGTH_SHORT).show();
+
 //            } else {
 //                try {
 //                    InputStream is = new FileInputStream(Utils.sdcard + "/config.json");
